@@ -1,0 +1,84 @@
+<div class="main">
+  <mat-card class="user-form-card" style="width: 400px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">
+    <mat-card-title>{{ isEditMode ? 'Update User' : 'Create User' }}</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstname" required>
+          <mat-error *ngIf="userForm.get('firstname')?.hasError('required') && userForm.get('firstname')?.touched">
+            First name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastname" required>
+          <mat-error *ngIf="userForm.get('lastname')?.hasError('required') && userForm.get('lastname')?.touched">
+            Last name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Age</mat-label>
+          <input matInput type="number" formControlName="age" required>
+          <mat-error *ngIf="userForm.get('age')?.hasError('required') && userForm.get('age')?.touched">
+            Age is required
+          </mat-error>
+        </mat-form-field>
+        <div class="form-buttons">
+          <button mat-raised-button color="primary" type="submit" style="margin-right: 10px;">
+            {{ isEditMode ? 'Update' : 'Create' }} User
+          </button>
+          <button mat-raised-button type="button" (click)="userForm.reset()"
+            style="background-color: rgb(86, 179, 25);color: white;">Reset</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+
+
+
+
+  <mat-card *ngIf="users.length > 0" style="text-align: center; align-items: center;  ">
+    <!-- <mat-card-title style="color:red; font-size: 25px">User List</mat-card-title> -->
+    <mat-card-content>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- First Name Column -->
+        <ng-container matColumnDef="firstname">
+          <th mat-header-cell *matHeaderCellDef> First Name </th>
+          <td mat-cell *matCellDef="let user"> {{user.firstname}} </td>
+        </ng-container>
+
+        <!-- Last Name Column -->
+        <ng-container matColumnDef="lastname">
+          <th mat-header-cell *matHeaderCellDef> Last Name </th>
+          <td mat-cell *matCellDef="let user"> {{user.lastname}} </td>
+        </ng-container>
+
+        <!-- Age Column -->
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef> Age </th>
+          <td mat-cell *matCellDef="let user"> {{user.age}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let user">
+            <button mat-raised-button color="primary" (click)="viewOneUser(user._id)"
+              style="background-color: rgb(59, 59, 211);margin:10px; color:white">Edit</button>
+            <button mat-raised-button color="warn" (click)="deleteUser(user._id)"
+              style="background-color: red;margin:10px; color:white">Delete</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf="users.length === 0">
+    <p>No users available.</p>
+  </div>
+</div>

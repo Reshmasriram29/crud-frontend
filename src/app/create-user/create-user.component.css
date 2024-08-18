@@ -1,0 +1,56 @@
+
+  .user-form-card {
+    background-color: rgb(213, 219, 219);
+    /* width: 400px; */
+    /* margin: 20px auto; */
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 2px solid black;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+  }
+  
+  mat-form-field {
+    margin-bottom: 16px;
+  }
+/*   
+  .container {
+    padding: 20px;
+  }
+   */
+  /* .form-container,
+  .table-container {
+    margin-bottom: 20px;
+
+  } */
+  
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .table-container {
+    overflow-x: auto; /* Allows horizontal scroll if table is too wide */
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+
+   .main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin: 50px;
+   } 
